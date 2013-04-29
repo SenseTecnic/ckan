@@ -1,0 +1,51 @@
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _("Welcome") }}{% endblock %}
+
+{% block maintag %}{% endblock %}
+
+{% block content %}
+  <div role="main" class="hero">
+    <div id="content" class="container">
+      {{ self.flash() }}
+      {{ self.primary_content() }}
+    </div>
+  </div>
+  <div class="main homepage">
+    <div class="container">
+      {{ self.secondary_content() }}
+    </div>
+  </div>
+{% endblock %}
+
+{% block primary_content %}
+  <div class="hero-primary module module-popup">
+    <div class="module-content box">
+      {% block home_primary %}
+        <header>
+          {% if g.site_intro_text %}
+          {{ h.render_markdown(g.site_intro_text) }}
+          {% else %}
+            {% block home_primary_content %}
+              <h1 class="page-heading">{% block home_primary_heading %}{{ _("Welcome to Smart Streets Hub") }}{% endblock %}</h1>
+              <p>
+              {% block home_primary_text %}
+                {% trans %}Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+in culpa qui officia deserunt mollit anim id est laborum.
+                {% endtrans %}
+              {% endblock %}
+              </p>
+            {% endblock %}
+          {% endif %}
+        </header>
+      {% endblock %}
+
+    </div>
+  </div>
+{% endblock %}
+
+{# Remove the toolbar. #}
+{% block toolbar %}{% endblock %}

@@ -7,6 +7,7 @@ syntax: glob
 ckan.egg-info/*
 sandbox/*
 dist
+.pydevproject
 
 # pylons
 development.ini*

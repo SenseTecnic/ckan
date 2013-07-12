@@ -22,7 +22,7 @@ install_requires = [
     'pairtree>=0.7.1-T',
     'paste>=1.7.5.1',
     'psycopg2==2.4.5',
-    'python-dateutil>=1.5.0,<2.0.0',
+    'python-dateutil>=1.5.0',
     'pyutilib.component.core>=4.5.3',
     'repoze.who-friendlyform>=1.0.8',
     'repoze.who.plugins.openid>=0.5.3',

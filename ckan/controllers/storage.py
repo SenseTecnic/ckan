@@ -410,11 +410,11 @@ class StorageAPIController(BaseController):
         authorize(method, bucket, label, c.userobj, self.ofs)
         data = self._get_form_data(label)
         
-        
         #HACK: browser may block 'http' activities when currently user using https protocol, 
         #so we force it to use https since most our ckan runs on https all time
         SKIP_PROTOCOL = 'http:'
-        if 'action' in data and request.url[0:len(SKIP_PROTOCOL)] != SKIP_PROTOCOL:
-            data['action'] = data['action'] if SKIP_PROTOCOL != data['action'][0:len(SKIP_PROTOCOL)] else 'https:' + data['action'][len(SKIP_PROTOCOL):]
+        SECURE_PROTOCOL = 'https:'
+        if 'action' in data and request.url[0:len(SECURE_PROTOCOL)] == SECURE_PROTOCOL:
+            data['action'] = data['action'] if SKIP_PROTOCOL != data['action'][0:len(SKIP_PROTOCOL)] else SECURE_PROTOCOL + data['action'][len(SKIP_PROTOCOL):]
         
         return data

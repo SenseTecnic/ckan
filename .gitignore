@@ -45,3 +45,7 @@ ckan_deb/DEBIAN/prerm
 node_modules/
 
 *.orig
+
+.settings/org.eclipse.core.resources.prefs
+
+.pydevproject

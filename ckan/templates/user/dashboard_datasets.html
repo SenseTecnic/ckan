@@ -2,24 +2,14 @@
 
 {% block dashboard_activity_stream_context %}{% endblock %}
 
-<<<<<<< HEAD
-{% block page_primary_action %}
-  {% if h.check_access('package_create') %}
-    {% link_for _('Add Dataset'), controller='package', action='new', class_="btn btn-primary", icon="plus-sign-alt" %}
-=======
 {% block add_action_content %}
   {% if h.check_access('package_create') %}
     <li>{% link_for _('Add Dataset'), controller='package', action='new', class_="btn btn-primary", icon="plus-sign-alt" %}</li>
->>>>>>> ckan-2.1
   {% endif %}
 {% endblock %}
 
 {% block primary_content_inner %}
-<<<<<<< HEAD
-  <h2 class="hide-heading">{{ _('My Datasets') }}</h2>
-=======
   <h2 class="page-heading">{{ _('My Datasets') }}</h2>
->>>>>>> ckan-2.1
   {% if c.user_dict.datasets %}
     {% snippet 'snippets/package_list.html', packages=c.user_dict.datasets %}
   {% else %}

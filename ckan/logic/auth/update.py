@@ -10,20 +10,20 @@ from ckan.logic.auth.create import _check_group_auth
 def make_latest_pending_package_active(context, data_dict):
     return new_authz.is_authorized('package_update', context, data_dict)
 
-
+@logic.auth_allow_anonymous_access
 def package_update(context, data_dict):
     user = context.get('user')
     package = logic_auth.get_package_object(context, data_dict)
 
     if package.owner_org:
         # if there is an owner org then we must have update_dataset
-        # premission for that organization
+        # permission for that organization
         check1 = new_authz.has_user_permission_for_group_or_org(
             package.owner_org, user, 'update_dataset'
         )
     else:
         # If dataset is not owned then we can edit if config permissions allow
-        if new_authz.auth_is_registered_user():
+        if not new_authz.auth_is_anon_user(context):
             check1 = new_authz.check_config_permission(
                 'create_dataset_if_not_in_organization')
         else:
@@ -41,6 +41,9 @@ def package_update(context, data_dict):
 
     return {'success': True}
 
+def package_resource_reorder(context, data_dict):
+    ## the action function runs package update so no need to run it twice
+    return {'success': True}
 
 def resource_update(context, data_dict):
     model = context['model']
@@ -176,6 +179,7 @@ def group_edit_permissions(context, data_dict):
         return {'success': True}
 
 
+@logic.auth_allow_anonymous_access
 def user_update(context, data_dict):
     user = context['user']
 
